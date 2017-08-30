@@ -1,0 +1,24 @@
+.menu{
+    margin-top: 56px;
+
+    ul{
+        margin-bottom: 56px;
+        li{
+            margin-bottom: 14px;
+        }
+        .menu-header{
+            background: $primary;
+            color: #fff;
+            padding: 7px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+    }
+
+    a{
+        &:hover{
+            border-bottom: 2px solid #e8f6fa;
+            color: #22a4c9;            
+        }
+    }
+}

@@ -1,9 +1,12 @@
-# coding-standards
-Repo for Trilogy Education Coding Standards and Conventions
+---
+layout: default
+title: JavaScript Code Standards
+permalink: /js-standards/
+---
 
+# JavaScript Style Guide
 
-# Automating JavaScript Styles & Format
-TBD: Working document/copy
+{% include_relative nav.md %}
 
 ## Based on StandardJS
 
@@ -34,3 +37,5 @@ npm codeformat
 ```
 
 Running this command will run `standard --fix` and present you with the console output.
+
+StandardJS provides many rules and stylistic guardrails. This guide serves to highlight the most important of those.

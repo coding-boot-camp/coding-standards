@@ -1,0 +1,19 @@
+$base: 10;
+$sides: ('top','right','bottom','left');
+
+@for $i from 1 through 15{
+    .has-padding--#{$i}{
+        padding: 1px * ($base * $i);
+    }
+    .has-margin--#{$i}{
+        margin: 1px * ($base * $i);
+    }        
+    @each $side in $sides {
+        .has-padding-#{$side}--#{$i}{
+            padding-#{$side}: 1px * ($base * $i);
+        }
+        .has-margin-#{$side}--#{$i}{ 
+            margin-#{$side}: 1px * ($base * $i);
+        }        
+    }    
+}

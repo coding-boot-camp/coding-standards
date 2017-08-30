@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{%if page.title %}{{ page.title | escape}} | {%endif%}{{site.title}}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{{site.url}}/css/site.css?ts={{site.time | date: '%s'}}">
+        <link rel="canonical" href="{{page.url | replace:'index.html','' | prepend: site.url}}">
+    </head>
+    <body>
+        <section class="sidebar">
+            <div class="sidebar__contents">
+                <div class="brand">
+                    <img src="http://www.trilogyed.com/images/logo-light.svg" />
+                </div>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="{{site.url}}">Home</a></li>
+                    </ul>
+                    <ul>
+                        <li class="menu-header">JavaScript</li>
+                        <li><a href="{{site.url}}/js-standards">General</a></li>
+                        <li><a href="{{site.url}}/js-standards/react">React</a></li>
+                        <li><a href="{{site.url}}/js-standards/node">Node</a></li>
+                    </ul>
+                    <ul>
+                         <li class="menu-header">CSS</li>
+                        <li><a href="{{site.url}}/css-standards">General</a></li>
+                        <li><a href="{{site.url}}/css-standards/sass">SASS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <section class="content">
+            <main>
+                <article>
+                {{ content }}
+                </article>
+            </main>
+        </section>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js" />
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>

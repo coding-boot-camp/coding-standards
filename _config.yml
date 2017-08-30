@@ -1,0 +1,17 @@
+title: Trilogy Education Services, Inc
+
+url: "/" 
+
+# Build settings
+markdown: kramdown
+source: src
+exclude: ['node_modules']
+sass:
+  style: compressed
+highlighter: null
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+    title: Pages
