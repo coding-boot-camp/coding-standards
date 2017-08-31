@@ -12,6 +12,39 @@ permalink: /js-standards/react/
 
 This style guide inherits all of the [standards and criteria for developing JavaScript]({{site.url}}/js-standards). In the event of a conflict, the rules outlined on this page will trump the main style guide *only* when working with React. If you are familar with AirBnb's React style guide, you'll see alot of similarities in the outline below
 
+### Component Architecture: Props
+
+**ALL** props should be declared with PropTypes and sensible defaults should be provided where it makes sense.
+
+```
+export default class ProfileContainer extends Component {
+ 
+  static propTypes = {
+    model: object.isRequired,
+    title: string
+  }
+ 
+  static defaultProps = {
+    model: {
+      id: 0
+    },
+    title: 'Your Name'
+  }
+```
+
+### Component Architecture: Initial State
+
+State should be defined as a property of the React component class. Please note, that this is a newer method of defining default state, as previously developers have done in the class constructor method
+
+```
+export default class ProfileContainer extends Component {
+
+  state = { expanded: false, loading: true }
+  
+ //rest of component code
+}
+```
+
 ### Component Architecture: Higher Order vs. Presentational
 
 In general (ie: 99% of use cases) our components should follow an HOC (Higher Order Container/Higher Order Component) architecture. 
@@ -74,6 +107,24 @@ export default componentName
 ### Component Architecture: Actions & Reducers
 
 Due to the application architecture of HOCs and Presentational components, the accepted method for working with actions and reducers are in the HOC container. The presentational component should call a callback that's passed as a prop. That callback, housed in the HOC, should interact with the state. 
+
+### Passing setState a function
+
+There are valid scenarios where you my find yourself needing to do something like this:
+
+```
+this.setState({ expanded: !this.state.expanded })
+```
+
+However set state is actually asynchronous. React batches state changes for performance reasons, so the state may not change immediately after setState is called.
+
+That means you should not rely on the current state when calling setState — since you can’t be sure what that state will be!
+
+Here’s the solution — pass a function to setState, with the previous state as an argument.
+
+```
+this.setState(prevState => ({ expanded: !prevState.expanded }))
+```
 
 ### Class vs React.createClass vs stateless
 
