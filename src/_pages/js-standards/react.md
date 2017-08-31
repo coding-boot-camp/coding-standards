@@ -12,11 +12,68 @@ permalink: /js-standards/react/
 
 This style guide inherits all of the [standards and criteria for developing JavaScript]({{site.url}}/js-standards). In the event of a conflict, the rules outlined on this page will trump the main style guide *only* when working with React. If you are familar with AirBnb's React style guide, you'll see alot of similarities in the outline below
 
-- [Higher Order Components](#)
-- [Presentational Components](#)
-- [Actions](#)
-- [Reducers](#)
-- [Say No to jQuery](#)
+### Component Architecture: Higher Order vs. Presentational
+
+In general (ie: 99% of use cases) our components should follow an HOC (Higher Order Container/Higher Order Component) architecture. 
+
+This involves one encapsilating component that handles fetching data and callback functions. 
+
+This component should use presentational (also known as stateless) components to display data / UI elements. The presentational components will recieve data from the HOC as props. This allows greater reusability among UI components.
+
+Think of the HOC as your "page" and the Presentational components as the pieces that make up your page. 
+
+Typically the router will route to an HOC component as well. 
+
+```
+    <Route to="/class/:classId" component={ClassDetail}>
+```
+
+Here's an example of a User List HOC
+
+```
+//containers/UserList/index.jsx
+import React, { Component } from 'react'
+
+class UserList extends Component {
+
+    componentDidMount()
+    {
+        //fetch users and set it in state as 'users'
+    }
+
+    render () {
+        return (
+            <div>
+                //map over users and call User component
+                users.map((item,index)=>{
+                    //if a click handler is needed, pass it down as a prop
+                    <User user={item} />
+                })
+            </div>
+        )
+    }
+}
+
+export default UserList
+
+//components/User/index.jsx
+import React from 'react'
+
+const User = (props) => {
+    return (
+        <div>
+            <div class="avatar">...</div>
+            <div class="name">{props.user.firstName}</div>
+        </div>
+    )
+}
+
+export default componentName
+```
+
+### Component Architecture: Actions & Reducers
+
+Due to the application architecture of HOCs and Presentational components, the accepted method for working with actions and reducers are in the HOC container. The presentational component should call a callback that's passed as a prop. That callback, housed in the HOC, should interact with the state. 
 
 ### Class vs React.createClass vs stateless
 
