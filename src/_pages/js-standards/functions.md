@@ -10,6 +10,10 @@ permalink: /js-standards/functions/
 
 ## Functions
 
+### Async/Await over Promise/Callback
+
+Using async/await is preferred over the promise/callback method for asynchronous calls
+
 ### Function Keyword vs Arrow Functions
 
 Function declarations should use the function keyword.
